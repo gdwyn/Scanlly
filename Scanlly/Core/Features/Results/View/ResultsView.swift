@@ -42,41 +42,6 @@ struct ResultsView: View {
     }
 }
 
-func recognizeText(image: UIImage, completion: @escaping (String) -> Void) {
-    guard let cgimage = image.cgImage else { return }
-    
-    let handler = VNImageRequestHandler(cgImage: cgimage)
-    let request = VNRecognizeTextRequest { request, error in
-        guard error == nil else {
-            print(error?.localizedDescription ?? "")
-            completion("")
-            return
-        }
-        
-        guard let results = request.results as? [VNRecognizedTextObservation] else {
-            completion("")
-            return
-        }
-        
-        let recognizedText = results.compactMap { observation in
-            observation.topCandidates(1).first?.string
-        }.joined(separator: "\n")
-        
-        DispatchQueue.main.async {
-            completion(recognizedText)
-        }
-    }
-    
-    request.recognitionLevel = .accurate
-    
-    do {
-        try handler.perform([request])
-    } catch {
-        print("Failed to perform text recognition request: \(error.localizedDescription)")
-        completion("")
-    }
-}
-
 #Preview {
     ResultsView(image: UIImage(systemName: "photo")!, navigationPath: .constant(NavigationPath()), recognizedText: "")
 }

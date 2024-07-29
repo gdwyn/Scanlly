@@ -2,20 +2,11 @@ import SwiftUI
 import PhotosUI
 
 struct HomeView: View {
-    @State private var showButtons = false
-    @State private var image: UIImage?
-    @State private var isLoading = false
-    @State private var recognizedText: String = ""
-    @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var selectedImage: UIImage? = nil
     
-    @State private var showResults = false
-    
-    @State private var navigationPath = NavigationPath()
-    
+    @State private var vm = ViewModel()
+
     var body: some View {
-        
-        NavigationStack(path: $navigationPath) {
+        NavigationStack(path: $vm.navigationPath) {
             VStack {
                 Image("scanlly")
                     .resizable()
@@ -36,37 +27,21 @@ struct HomeView: View {
                         }
                         
                         PhotosPicker(
-                            selection: $selectedItem,
+                            selection: $vm.selectedItem,
                             matching: .images,
                             photoLibrary: .shared()) {
                                 PhotoButton(icon: "photo", label: "Gallery")
                                 
                             }
-                            .onChange(of: selectedItem) {
-                                Task {
-                                    // Retrieve selected asset in the form of Data
-                                    if let selectedItem = selectedItem {
-                                        do {
-                                            // Retrieve selected asset
-                                            let data = try await selectedItem.loadTransferable(type: Data.self)
-                                            if let data = data {
-                                                selectedImage = UIImage(data: data)
-                                                image = selectedImage
-                                            }
-                                        } catch {
-                                            print("Failed to load selected image data: \(error.localizedDescription)")
-                                        }
-                                    }
-                                }
-                            }
+                            .onChange(of: vm.selectedItem) { vm.pickPhotos() }
                     }
-                    .opacity(showButtons ? 1 : 0)
-                    .scaleEffect(showButtons ? 1 : 0)
-                    .offset(y: showButtons ? -40 : 0)
+                    .opacity(vm.showButtons ? 1 : 0)
+                    .scaleEffect(vm.showButtons ? 1 : 0)
+                    .offset(y: vm.showButtons ? -40 : 0)
                     
                     ScanButton {
                         withAnimation {
-                            showButtons.toggle()
+                            vm.showButtons.toggle()
                         }
                     }
                     
@@ -77,22 +52,22 @@ struct HomeView: View {
                 .navigationDestination(for: Destination.self) { destination in
                     switch destination {
                     case .camera:
-                        CameraView(image: $image, navigationPath: $navigationPath)
+                        CameraView(image: $vm.image, navigationPath: $vm.navigationPath)
                     case .home:
                         HomeView()
                     }
                 }
-                .onChange(of: image) {
-                    if let newImage = image {
-                        recognizeText(image: newImage) { text in
-                            recognizedText = text
+                .onChange(of: vm.image) {
+                    if let newImage = vm.image {
+                        vm.recognizeText(image: newImage) { text in
+                            vm.recognizedText = text
                         }
-                        showResults = true
+                        vm.showResults = true
                     }
                 }
-                .sheet(isPresented: $showResults) {
-                    if let image = image {
-                        ResultsView(image: image, navigationPath: $navigationPath, recognizedText: recognizedText)
+                .sheet(isPresented: $vm.showResults) {
+                    if let image = vm.image {
+                        ResultsView(image: image, navigationPath: $vm.navigationPath, recognizedText: vm.recognizedText)
                             .interactiveDismissDisabled()
                     }
                 }
