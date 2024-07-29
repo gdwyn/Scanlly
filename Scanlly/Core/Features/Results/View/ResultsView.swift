@@ -60,7 +60,7 @@ func recognizeText(image: UIImage, completion: @escaping (String) -> Void) {
         
         let recognizedText = results.compactMap { observation in
             observation.topCandidates(1).first?.string
-        }.joined(separator: " ")
+        }.joined(separator: "\n")
         
         DispatchQueue.main.async {
             completion(recognizedText)

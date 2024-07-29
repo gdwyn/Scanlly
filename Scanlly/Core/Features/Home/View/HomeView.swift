@@ -1,10 +1,13 @@
 import SwiftUI
+import PhotosUI
 
 struct HomeView: View {
     @State private var showButtons = false
     @State private var image: UIImage?
     @State private var isLoading = false
     @State private var recognizedText: String = ""
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedImage: UIImage? = nil
     
     @State private var showResults = false
     
@@ -32,8 +35,30 @@ struct HomeView: View {
                             PhotoButton(icon: "camera", label: "Camera")
                         }
                         
-                        PhotoButton(icon: "photo", label: "Gallery")
-                        
+                        PhotosPicker(
+                            selection: $selectedItem,
+                            matching: .images,
+                            photoLibrary: .shared()) {
+                                PhotoButton(icon: "photo", label: "Gallery")
+                                
+                            }
+                            .onChange(of: selectedItem) {
+                                Task {
+                                    // Retrieve selected asset in the form of Data
+                                    if let selectedItem = selectedItem {
+                                        do {
+                                            // Retrieve selected asset
+                                            let data = try await selectedItem.loadTransferable(type: Data.self)
+                                            if let data = data {
+                                                selectedImage = UIImage(data: data)
+                                                image = selectedImage
+                                            }
+                                        } catch {
+                                            print("Failed to load selected image data: \(error.localizedDescription)")
+                                        }
+                                    }
+                                }
+                            }
                     }
                     .opacity(showButtons ? 1 : 0)
                     .scaleEffect(showButtons ? 1 : 0)
@@ -46,36 +71,36 @@ struct HomeView: View {
                     }
                     
                 }
-                
-            }
-            .padding()
-            .navigationDestination(for: Destination.self) { destination in
-                switch destination {
+                    
+                }
+                .padding()
+                .navigationDestination(for: Destination.self) { destination in
+                    switch destination {
                     case .camera:
-                    CameraView(image: $image, navigationPath: $navigationPath)
+                        CameraView(image: $image, navigationPath: $navigationPath)
                     case .home:
                         HomeView()
                     }
                 }
-            .onChange(of: image) {
-                if let newImage = image {
+                .onChange(of: image) {
+                    if let newImage = image {
                         recognizeText(image: newImage) { text in
                             recognizedText = text
                         }
-                    showResults = true
+                        showResults = true
                     }
                 }
-            .sheet(isPresented: $showResults) {
-                if let image = image {
-                    ResultsView(image: image, navigationPath: $navigationPath, recognizedText: recognizedText)
-                        .interactiveDismissDisabled()
+                .sheet(isPresented: $showResults) {
+                    if let image = image {
+                        ResultsView(image: image, navigationPath: $navigationPath, recognizedText: recognizedText)
+                            .interactiveDismissDisabled()
+                    }
                 }
+                
             }
-           
+            
         }
-        
     }
-}
 
 #Preview {
     HomeView()
