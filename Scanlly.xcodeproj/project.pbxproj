@@ -7,18 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE00B72B2C56FE38005AA39A /* ResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00B72A2C56FE38005AA39A /* ResultCard.swift */; };
+		CE00B72D2C570501005AA39A /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00B72C2C570501005AA39A /* Empty.swift */; };
+		CE00B7312C5706AD005AA39A /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00B7302C5706AD005AA39A /* CameraView.swift */; };
 		CE1A4DB52C5695F900B88C34 /* ScanllyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4DB42C5695F900B88C34 /* ScanllyApp.swift */; };
 		CE1A4DB92C5695FF00B88C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1A4DB82C5695FF00B88C34 /* Assets.xcassets */; };
 		CE1A4DBC2C5695FF00B88C34 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1A4DBB2C5695FF00B88C34 /* Preview Assets.xcassets */; };
 		CEE450422C569CB700B6A54F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE450412C569CB700B6A54F /* HomeView.swift */; };
+		CEE450442C56A92E00B6A54F /* ScanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE450432C56A92E00B6A54F /* ScanButton.swift */; };
+		CEE450482C56A9F100B6A54F /* PhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE450472C56A9F100B6A54F /* PhotoButton.swift */; };
+		CEE4504A2C56B44A00B6A54F /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE450492C56B44A00B6A54F /* ResultsView.swift */; };
+		CEE4504C2C56B57A00B6A54F /* ResultTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4504B2C56B57A00B6A54F /* ResultTopBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE00B72A2C56FE38005AA39A /* ResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCard.swift; sourceTree = "<group>"; };
+		CE00B72C2C570501005AA39A /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
+		CE00B7302C5706AD005AA39A /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		CE1A4DB12C5695F900B88C34 /* Scanlly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanlly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1A4DB42C5695F900B88C34 /* ScanllyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanllyApp.swift; sourceTree = "<group>"; };
 		CE1A4DB82C5695FF00B88C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE1A4DBB2C5695FF00B88C34 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CE93AB122C57155400A3F0C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CEE450412C569CB700B6A54F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CEE450432C56A92E00B6A54F /* ScanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButton.swift; sourceTree = "<group>"; };
+		CEE450472C56A9F100B6A54F /* PhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButton.swift; sourceTree = "<group>"; };
+		CEE450492C56B44A00B6A54F /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		CEE4504B2C56B57A00B6A54F /* ResultTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTopBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +47,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE00B72E2C570698005AA39A /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				CE00B72F2C5706A0005AA39A /* View */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		CE00B72F2C5706A0005AA39A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE00B7302C5706AD005AA39A /* CameraView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CE1A4DA82C5695F900B88C34 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +82,7 @@
 		CE1A4DB32C5695F900B88C34 /* Scanlly */ = {
 			isa = PBXGroup;
 			children = (
+				CE93AB122C57155400A3F0C3 /* Info.plist */,
 				CEE450312C569AD700B6A54F /* App */,
 				CEE450322C569AEC00B6A54F /* Core */,
 				CEE450332C569B0E00B6A54F /* Utilities */,
@@ -95,6 +127,9 @@
 		CEE450342C569B5C00B6A54F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CEE450432C56A92E00B6A54F /* ScanButton.swift */,
+				CEE450472C56A9F100B6A54F /* PhotoButton.swift */,
+				CE00B72A2C56FE38005AA39A /* ResultCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -102,6 +137,7 @@
 		CEE450352C569B6900B6A54F /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				CE00B72E2C570698005AA39A /* Camera */,
 				CEE450362C569B7E00B6A54F /* Home */,
 				CEE4503E2C569C5C00B6A54F /* Results */,
 			);
@@ -121,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE450412C569CB700B6A54F /* HomeView.swift */,
+				CE00B72C2C570501005AA39A /* Empty.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,6 +181,8 @@
 		CEE4503F2C569C8600B6A54F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEE450492C56B44A00B6A54F /* ResultsView.swift */,
+				CEE4504B2C56B57A00B6A54F /* ResultTopBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,7 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE4504C2C56B57A00B6A54F /* ResultTopBar.swift in Sources */,
+				CE00B72B2C56FE38005AA39A /* ResultCard.swift in Sources */,
 				CE1A4DB52C5695F900B88C34 /* ScanllyApp.swift in Sources */,
+				CE00B7312C5706AD005AA39A /* CameraView.swift in Sources */,
+				CEE450442C56A92E00B6A54F /* ScanButton.swift in Sources */,
+				CEE450482C56A9F100B6A54F /* PhotoButton.swift in Sources */,
+				CE00B72D2C570501005AA39A /* Empty.swift in Sources */,
+				CEE4504A2C56B44A00B6A54F /* ResultsView.swift in Sources */,
 				CEE450422C569CB700B6A54F /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +409,7 @@
 				DEVELOPMENT_TEAM = F2DAZJL548;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scanlly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -392,6 +439,7 @@
 				DEVELOPMENT_TEAM = F2DAZJL548;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scanlly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
