@@ -4,7 +4,7 @@ struct HomeView: View {
     @State private var showButtons = false
     @State private var image: UIImage?
     @State private var isLoading = false
-    @State private var recognizedText = ""
+    @State private var recognizedText: String = ""
     
     @State private var showResults = false
     
@@ -58,17 +58,20 @@ struct HomeView: View {
                     }
                 }
             .onChange(of: image) {
-                    if image != nil {
-                        showResults = true
-                    } else {
-                        showResults = false
+                if let newImage = image {
+                        recognizeText(image: newImage) { text in
+                            recognizedText = text
+                        }
+                    showResults = true
                     }
                 }
             .sheet(isPresented: $showResults) {
                 if let image = image {
-                    ResultsView(image: image, navigationPath: $navigationPath)
+                    ResultsView(image: image, navigationPath: $navigationPath, recognizedText: recognizedText)
+                        .interactiveDismissDisabled()
                 }
             }
+           
         }
         
     }

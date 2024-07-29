@@ -10,18 +10,25 @@ import SwiftUI
 struct ResultCard: View {
     var copyAction: () -> Void
     var saveAction: () -> Void
-
+    var recognizedText: String
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 8) {
-                Text("English")
-                    .foregroundStyle(.gray)
-                Text(
-                """
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available
-                """
-                )
+                
+                
+                if recognizedText.isEmpty {
+                    Text("No text detected")
+                        .foregroundColor(.gray)
+                } else {
+                    Text("English")
+                        .foregroundStyle(.gray)
+                    
+                    Text(recognizedText)
+                }
+                
             }
+            .frame(maxWidth: .infinity)
             
             HStack(spacing: 24) {
                 Button {
@@ -53,5 +60,5 @@ struct ResultCard: View {
 }
 
 #Preview {
-    ResultCard(copyAction: {}, saveAction: {})
+    ResultCard(copyAction: {}, saveAction: {}, recognizedText: "")
 }
