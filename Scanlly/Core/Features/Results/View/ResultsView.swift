@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct ResultsView: View {
+    let image: UIImage
+    @Binding var navigationPath: NavigationPath
+    
     var body: some View {
         VStack(spacing: 16) {
-            ResultTopBar() {}
+            ResultTopBar() {
+                navigationPath.removeLast(navigationPath.count)
+            }
             
             VStack(spacing: 24) {
-                Color.gray
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity)
                     .frame(height: 250)
                 
                 ResultCard(
@@ -29,5 +37,5 @@ struct ResultsView: View {
 }
 
 #Preview {
-    ResultsView()
+    ResultsView(image: UIImage(systemName: "photo")!, navigationPath: .constant(NavigationPath()))
 }

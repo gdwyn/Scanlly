@@ -10,11 +10,10 @@ import SwiftUI
 struct PhotoButton: View {
     var icon: String
     var label: String
-    var action: () -> Void
+    //var action: () -> Void
 
     var body: some View {
-        Button {
-        } label: {
+       
             HStack {
                 Image(systemName: icon)
                 Text(label)
@@ -25,9 +24,9 @@ struct PhotoButton: View {
             .background(.gray.opacity(0.06))
             .clipShape(Capsule())
         }
-    }
+    
 }
 
 #Preview {
-    PhotoButton(icon: "camera", label: "Camera") {}
+    PhotoButton(icon: "camera", label: "Camera") 
 }

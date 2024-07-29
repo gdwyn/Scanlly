@@ -6,48 +6,69 @@ struct HomeView: View {
     @State private var isLoading = false
     @State private var recognizedText = ""
     
-    @State private var showCamera = false
+    @State private var showResults = false
+    
+    @State private var navigationPath = NavigationPath()
     
     var body: some View {
         
-        VStack {
-            Image("scanlly")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 48)
-            
-            Spacer()
-            
-            Empty()
-            
-            Spacer()
-            
-            VStack(spacing: -24) {
-
-                VStack(spacing: 12) {
-                    PhotoButton(icon: "camera", label: "Camera") {
-                        showCamera.toggle()
+        NavigationStack(path: $navigationPath) {
+            VStack {
+                Image("scanlly")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 48)
+                
+                Spacer()
+                
+                Empty()
+                
+                Spacer()
+                
+                VStack(spacing: -24) {
+                    
+                    VStack(spacing: 12) {
+                        NavigationLink(value: Destination.camera) {
+                            PhotoButton(icon: "camera", label: "Camera")
+                        }
+                        
+                        PhotoButton(icon: "photo", label: "Gallery")
+                        
                     }
-
-                    PhotoButton(icon: "photo", label: "Gallery") {}
-
-                }
-                .opacity(showButtons ? 1 : 0)
-                .scaleEffect(showButtons ? 1 : 0)
-                .offset(y: showButtons ? -40 : 0)
-
-                ScanButton {
-                    withAnimation {
-                        showButtons.toggle()
+                    .opacity(showButtons ? 1 : 0)
+                    .scaleEffect(showButtons ? 1 : 0)
+                    .offset(y: showButtons ? -40 : 0)
+                    
+                    ScanButton {
+                        withAnimation {
+                            showButtons.toggle()
+                        }
                     }
+                    
                 }
                 
             }
-            
-        }
-        .padding()
-        .sheet(isPresented: $showCamera) {
-            CameraView(image: $image)
+            .padding()
+            .navigationDestination(for: Destination.self) { destination in
+                switch destination {
+                    case .camera:
+                    CameraView(image: $image, navigationPath: $navigationPath)
+                    case .home:
+                        HomeView()
+                    }
+                }
+            .onChange(of: image) {
+                    if image != nil {
+                        showResults = true
+                    } else {
+                        showResults = false
+                    }
+                }
+            .sheet(isPresented: $showResults) {
+                if let image = image {
+                    ResultsView(image: image, navigationPath: $navigationPath)
+                }
+            }
         }
         
     }
