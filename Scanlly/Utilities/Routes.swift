@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum Destination: Hashable {
+enum Routes: Hashable {
     case camera
     case home
 }

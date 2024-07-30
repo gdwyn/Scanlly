@@ -1,64 +1,89 @@
-//
-//  ResultCard.swift
-//  Scanlly
-//
-//  Created by Godwin IE on 28/07/2024.
-//
-
 import SwiftUI
 
 struct ResultCard: View {
     var copyAction: () -> Void
-    var saveAction: () -> Void
+    var translateAction: () -> Void
     var recognizedText: String
     
+    @State private var copied: Bool = false
+    
     var body: some View {
-        VStack {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 18) {
                 
                 
                 if recognizedText.isEmpty {
-                    Text("No text detected")
-                        .foregroundColor(.gray)
+                    VStack(spacing: 14) {
+                        Image("empty")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 84)
+
+                        Text("No text detected")
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.vertical)
+
                 } else {
-                    Text("English")
-                        .foregroundStyle(.gray)
-                    
+                    HStack(spacing: 18) {
+                        Text("English")
+                            .foregroundStyle(.gray)
+                        
+                        Spacer()
+                        
+                        Button {
+                            copyAction()
+                            copied.toggle()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                copied.toggle()
+                            }
+                        } label: {
+                            ZStack {
+                                Text("Copy")
+                                    .opacity(!copied ? 1 : 0)
+                                
+                                Text("Copied!")
+                                    .scaleEffect(copied ? 1 : 0)
+                                    .opacity(copied ? 1 : 0)
+                            }
+                            .foregroundStyle(.dark)
+                            .font(.callout)
+                        }
+                        
+                        Button {
+                            translateAction()
+                        } label: {
+                            HStack(spacing: 8) {
+                                Image(systemName: "globe")
+                                Text("Translate")
+                                    .font(.callout)
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .foregroundStyle(.white)
+                        .background(.dark)
+                        .clipShape(Capsule())
+                    }
+                                        
                     Text(recognizedText)
                 }
                 
             }
-            .frame(maxWidth: .infinity)
+            .padding()
             
-            HStack(spacing: 24) {
-                Button {
-                    copyAction()
-                } label: {
-                    Image(systemName: "doc.on.doc")
-                }
-                
-                Button {
-                    saveAction()
-                } label: {
-                    Image(systemName: "bookmark")
-                }
-            }
-            .padding(.horizontal, 24)
-            .padding(.vertical)
-            .foregroundStyle(.white)
-            .background(.dark)
-            .clipShape(Capsule())
-            .padding(8)
+            
         }
-        .padding()
+        .frame(maxWidth: .infinity)
         .background(.gray.opacity(0.02))
         .overlay(
             RoundedRectangle(cornerRadius: 18)
                 .stroke(Color.gray.opacity(0.2), lineWidth: 1)
         )
+
     }
 }
 
 #Preview {
-    ResultCard(copyAction: {}, saveAction: {}, recognizedText: "")
+    ResultCard(copyAction: {}, translateAction: {}, recognizedText: "Some transcribtion")
 }

@@ -22,7 +22,7 @@ struct HomeView: View {
                 VStack(spacing: -24) {
                     
                     VStack(spacing: 12) {
-                        NavigationLink(value: Destination.camera) {
+                        NavigationLink(value: Routes.camera) {
                             PhotoButton(icon: "camera", label: "Camera")
                         }
                         
@@ -49,7 +49,7 @@ struct HomeView: View {
                     
                 }
                 .padding()
-                .navigationDestination(for: Destination.self) { destination in
+                .navigationDestination(for: Routes.self) { destination in
                     switch destination {
                     case .camera:
                         CameraView(image: $vm.image, navigationPath: $vm.navigationPath)
@@ -67,7 +67,7 @@ struct HomeView: View {
                 }
                 .sheet(isPresented: $vm.showResults) {
                     if let image = vm.image {
-                        ResultsView(image: image, navigationPath: $vm.navigationPath, recognizedText: vm.recognizedText)
+                        ResultsView(image: image, recognizedText: vm.recognizedText, navigationPath: $vm.navigationPath)
                             .interactiveDismissDisabled()
                     }
                 }

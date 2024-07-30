@@ -1,10 +1,3 @@
-//
-//  PhotoButton.swift
-//  Scanlly
-//
-//  Created by Godwin IE on 28/07/2024.
-//
-
 import SwiftUI
 
 struct PhotoButton: View {

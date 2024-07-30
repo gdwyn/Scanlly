@@ -11,10 +11,26 @@ struct CameraImpl: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewControllerType {
         let viewController = UIViewControllerType()
         viewController.delegate = context.coordinator
-        viewController.sourceType = .camera
-        viewController.cameraDevice = .rear
-        viewController.cameraOverlayView = .none
-        viewController.cameraFlashMode = .off
+                
+        // check if the device has a camera and supports the desired source type
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            viewController.sourceType = .camera
+            
+            // check if the device supports the rear camera
+            if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+                viewController.cameraDevice = .rear
+            } else if UIImagePickerController.isCameraDeviceAvailable(.front) {
+                viewController.cameraDevice = .front
+            }
+            
+            // check if the device supports other camera settings (e.g., flash)
+            if UIImagePickerController.isFlashAvailable(for: .rear) {
+                viewController.cameraFlashMode = .off
+            }
+        } else {
+            // fall back to photo library if the camera is not available
+            viewController.sourceType = .photoLibrary
+        }
         
         return viewController
     }

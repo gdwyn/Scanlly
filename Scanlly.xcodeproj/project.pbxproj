@@ -13,7 +13,7 @@
 		CE1A4DB52C5695F900B88C34 /* ScanllyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4DB42C5695F900B88C34 /* ScanllyApp.swift */; };
 		CE1A4DB92C5695FF00B88C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1A4DB82C5695FF00B88C34 /* Assets.xcassets */; };
 		CE1A4DBC2C5695FF00B88C34 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1A4DBB2C5695FF00B88C34 /* Preview Assets.xcassets */; };
-		CE9649FD2C57217E00D663D7 /* Destinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9649FC2C57217E00D663D7 /* Destinations.swift */; };
+		CE9649FD2C57217E00D663D7 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9649FC2C57217E00D663D7 /* Routes.swift */; };
 		CE9649FF2C57239F00D663D7 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9649FE2C57239F00D663D7 /* CameraView.swift */; };
 		CEA2448E2C579683009398A3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2448D2C579683009398A3 /* HomeViewModel.swift */; };
 		CEB2603A2C57AD2100610E39 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB260392C57AD2100610E39 /* ResultsViewModel.swift */; };
@@ -33,7 +33,7 @@
 		CE1A4DB82C5695FF00B88C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE1A4DBB2C5695FF00B88C34 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE93AB122C57155400A3F0C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CE9649FC2C57217E00D663D7 /* Destinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destinations.swift; sourceTree = "<group>"; };
+		CE9649FC2C57217E00D663D7 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		CE9649FE2C57239F00D663D7 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		CEA2448D2C579683009398A3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CEB260392C57AD2100610E39 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		CEE450332C569B0E00B6A54F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				CE9649FC2C57217E00D663D7 /* Destinations.swift */,
+				CE9649FC2C57217E00D663D7 /* Routes.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -284,7 +284,7 @@
 				CE9649FF2C57239F00D663D7 /* CameraView.swift in Sources */,
 				CEE450482C56A9F100B6A54F /* PhotoButton.swift in Sources */,
 				CEA2448E2C579683009398A3 /* HomeViewModel.swift in Sources */,
-				CE9649FD2C57217E00D663D7 /* Destinations.swift in Sources */,
+				CE9649FD2C57217E00D663D7 /* Routes.swift in Sources */,
 				CE00B72D2C570501005AA39A /* Empty.swift in Sources */,
 				CEB2603A2C57AD2100610E39 /* ResultsViewModel.swift in Sources */,
 				CEE4504A2C56B44A00B6A54F /* ResultsView.swift in Sources */,
@@ -426,11 +426,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Scanlly/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Your app needs access to the camera to take photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,11 +457,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Scanlly/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Your app needs access to the camera to take photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

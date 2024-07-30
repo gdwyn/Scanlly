@@ -1,10 +1,3 @@
-//
-//  Empty.swift
-//  Scanlly
-//
-//  Created by Godwin IE on 29/07/2024.
-//
-
 import SwiftUI
 
 struct Empty: View {

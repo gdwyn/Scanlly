@@ -1,10 +1,3 @@
-//
-//  HomeViewModel.swift
-//  Scanlly
-//
-//  Created by Godwin IE on 29/07/2024.
-//
-
 import Foundation
 import SwiftUI
 import PhotosUI
@@ -17,7 +10,6 @@ extension HomeView {
         var image: UIImage?
         var selectedItem: PhotosPickerItem? = nil
         var selectedImage: UIImage? = nil
-        
         var showResults = false
         var recognizedText: String = ""
         var navigationPath = NavigationPath()

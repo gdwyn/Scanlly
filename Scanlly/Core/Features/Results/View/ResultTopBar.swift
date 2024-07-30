@@ -1,10 +1,3 @@
-//
-//  ResultTopBar.swift
-//  Scanlly
-//
-//  Created by Godwin IE on 28/07/2024.
-//
-
 import SwiftUI
 
 struct ResultTopBar: View {
@@ -12,7 +5,7 @@ struct ResultTopBar: View {
 
     var body: some View {
         HStack {
-            Text("Results")
+            Text("Result")
                 .font(.title2.bold())
             
             Spacer()
