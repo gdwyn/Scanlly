@@ -11,7 +11,7 @@ import SwiftUI
 struct ScanllyApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            ContainerView()
         }
     }
 }
