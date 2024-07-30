@@ -19,7 +19,6 @@ Scanlly is a SwiftUI application that allows users to take photos, recognize tex
 - Translate API for translating recognized text
 - Animated SF Symbols
 
-
 ## Screenshots
 
 ### HomeView
@@ -38,10 +37,22 @@ The `ResultsView` displays the recognized text and translation from the photo.
 
 ## Requirements
 
-- iOS 17.0+
+- iOS 17.0+ (iOS 17.5 for translation feature)
 - Xcode 15.4+
 - Swift 5.0+
 
+## Demo
+
+https://github.com/user-attachments/assets/9a9d60c7-01ae-4437-bda0-37bccef8d0de
+
+## Test app
+Test Scanlly on appetize [here](https://appetize.io/app/b_46jg2stgxjoqfxpm4lxmwindxa).
+```
+Note:
+- You can't use camera on appetize simulator
+- You can't use the tranlate feature because appetize only provides up to iOS 17.2 as of July, 2024
+- Add media to your simulator and use the gallery option to test text recognition
+```
 
 ## Installation
 
