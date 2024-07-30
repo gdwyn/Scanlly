@@ -14,6 +14,7 @@ struct ContainerView: View {
             SplashScreenView(showSplashScreen: $showSplashScreen)
         } else {
             HomeView()
+                .preferredColorScheme(.light)
         }
     }
 }
